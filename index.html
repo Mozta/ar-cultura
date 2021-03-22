@@ -6,17 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 </head>
 
 <body>
-    <h1>Que onda</h1>
-    <style>
-        .style-iframe {
-            border: none;
-        }
-    </style>
-    <iframe class="style-iframe" width="420" height="840" src="https://prueba-artag-115.glitch.me/"
-        allow="camera; geolocation; gyroscope; magnetometer; accelerometer;"></iframe>
+    <h1>Cargando su experiencia señor...</h1>
+    <a-scene renderer="logarithmicDepthBuffer: true;" embedded loading-screen="enabled: false;"
+        arjs="sourceType: webcam; debugUIEnabled: false;" device-orientation-permission-ui="enabled: false;">
+        <a-assets>
+            <a-asset-item id="animated-asset"
+                src="https://cdn.glitch.com/6c99b047-784b-43b7-a9fb-618eab2b0abc%2FcraneoExporterColores.glb?v=1616124628133">
+            </a-asset-item>
+        </a-assets>
+
+        <a-entity look-at="[gps-camera]" animation-mixer="loop: repeat" gltf-model="#animated-asset" scale="0.5 0.5 0.5"
+            position="0 0 0" rotation="0 0 180"
+            gps-entity-place="latitude: 19.001560888459526; longitude: -98.20650706065229;"></a-entity>
+
+        <a-camera id="camera1" look-controls-enabled="false" arjs-look-controls="smoothingFactor: 0.005"
+            gps-camera="gpsMinDistance: 7" rotation-reader></a-camera>
+    </a-scene>
 </body>
 
 </html>
